@@ -86,6 +86,37 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
         }
+
+        .item-card.purchased {
+            opacity: 0.6;
+            background-color: #f5f5f5;
+        }
+
+        .item-card.purchased .item-name {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .item-checkbox {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            cursor: pointer;
+            accent-color: #c41e3a;
+            flex-shrink: 0;
+        }
+
+        .checkbox-label {
+            font-size: 12px;
+            color: #666;
+            cursor: pointer;
+        }
         
         .item-image {
             width: 100%;
@@ -131,14 +162,84 @@
             margin-top: auto;
         }
     </style>
+    <script>
+        // Google Sheets data
+        const SHEET_ID = '1SFTGIrZoCDig6IdBDbxwaxAMCu4WMynu4o6RvmJPj4E';
+        const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+
+        // Store purchased items in localStorage
+        let purchasedItems = JSON.parse(localStorage.getItem('purchasedItems')) || {};
+
+        // Fetch data from Google Sheets
+        async function loadPurchasedItems() {
+            try {
+                const response = await fetch(SHEET_URL);
+                const csv = await response.text();
+                const rows = csv.split('\n');
+                
+                // Parse CSV (skip header)
+                for (let i = 1; i < rows.length; i++) {
+                    const columns = rows[i].split(',');
+                    if (columns.length > 0 && columns[0].trim()) {
+                        const itemName = columns[0].trim();
+                        const isPurchased = columns[4] && columns[4].trim().toUpperCase() === 'TRUE';
+                        purchasedItems[itemName] = isPurchased;
+                    }
+                }
+                
+                // Update UI
+                updateUICheckboxes();
+            } catch (error) {
+                console.log('Could not load from Google Sheets, using local storage only');
+                updateUICheckboxes();
+            }
+        }
+
+        function updateUICheckboxes() {
+            document.querySelectorAll('.item-checkbox').forEach(checkbox => {
+                const itemName = checkbox.dataset.itemName;
+                checkbox.checked = purchasedItems[itemName] || false;
+                
+                const card = checkbox.closest('.item-card');
+                if (checkbox.checked) {
+                    card.classList.add('purchased');
+                } else {
+                    card.classList.remove('purchased');
+                }
+            });
+        }
+
+        function togglePurchased(checkbox) {
+            const itemName = checkbox.dataset.itemName;
+            purchasedItems[itemName] = checkbox.checked;
+            
+            // Save to localStorage
+            localStorage.setItem('purchasedItems', JSON.stringify(purchasedItems));
+            
+            // Update UI
+            const card = checkbox.closest('.item-card');
+            if (checkbox.checked) {
+                card.classList.add('purchased');
+            } else {
+                card.classList.remove('purchased');
+            }
+        }
+
+        // Load on page load
+        document.addEventListener('DOMContentLoaded', loadPurchasedItems);
+    </script>
 </head>
 <body>
     <div class="container">
-        <h1>🎄 Meagan's Christmas Wishlist 2025 🎁</h1>
+        <h1>🎄 Christmas Wishlist 🎁</h1>
         
         <h2>Electronics</h2>
         <div class="wishlist-grid">
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Logitech - MX Keys S Combo for Mac" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.logitech.com/en-us/shop/p/mx-keys-s-combo-for-mac" target="_blank">
                     <img src="https://resource.logitech.com/w_544,h_466,ar_7:6,c_pad,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/combos/mx-keys-s-combo-for-mac/buy/gallery/mx-key-s-combo-mac-space-grey-gallery-3-us.png" alt="Logitech MX Keys S Combo" class="item-image">
                 </a>
@@ -150,6 +251,10 @@
             </div>
             
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Kobo Clara Colour" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://us.kobobooks.com/products/kobo-clara-colour?variant=43784716714054" target="_blank">
                     <img src="https://us.kobobooks.com/cdn/shop/files/1-Spa-Colour-EN-Device_Front_1080x1080_07801ff1-4021-4bab-a615-36f27924cdaa_962x962.png?v=1757383709" alt="Kobo Clara Colour" class="item-image">
                 </a>
@@ -161,6 +266,10 @@
             </div>
             
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Edifier - R1280T Powered Bookshelf Speakers" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.bestbuy.com/product/edifier-r1280t-powered-bookshelf-speakers-computer-speakers-studio-monitor-speakers-2-0-active-near-field-monitors-42-watts-rms-brown/J3WSK7SC2Z" target="_blank">
                     <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/0d6c873c-4635-4445-8eca-2d9af0d73805.jpg;maxHeight=1920;maxWidth=900?format=webp" alt="Edifier Speakers" class="item-image">
                 </a>
@@ -172,6 +281,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="StarTech - 2 Port USB C KVM Switch" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.startech.com/en-us/kvm-switches-accessories/sv211hduc" target="_blank">
                     <img src="https://media.startech.com/cms/products/gallery_large/sv211hduc.main.jpg" alt="USB C KVM Switch" class="item-image">
                 </a>
@@ -183,6 +296,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Snooz White Noise Machine" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://getsnooz.com/products/snooz-white-noise-machine" target="_blank">
                     <img src="https://cdn.shopify.com/s/files/1/1378/8621/files/SNOOZ_Original_White_Noise_Machine_Cloud_d455f258-2010-4a25-8931-b04a9fbbb7bb.jpg?v=1756831432&width=1800" alt="Snooz White Noise Machine" class="item-image">
                 </a>
@@ -194,6 +311,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Logitech C920S Pro HD Webcam" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.logitech.com/en-us/shop/p/c920s-pro-hd-webcam" target="_blank">
                     <img src="https://resource.logitech.com/w_544,h_466,ar_7:6,c_pad,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/webcams/c920s/gallery/c920s-gallery-1.png" alt="Logitech C920S Webcam" class="item-image">
                 </a>
@@ -205,6 +326,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Elago Magnetic Stand for iPad" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.elago.com/products/magnetic-stand-for-ipads?variant=42899754746010" target="_blank">
                     <img src="https://www.elago.com/cdn/shop/products/EST-MAG-PAD-DGY.jpg?v=1692202550&width=3000" alt="Elago Magnetic Stand for iPad" class="item-image">
                 </a>
@@ -216,6 +341,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Elago Smart Magnetic Desk Mat" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.elago.com/products/smart-magnetic-desk-mat?variant=44610019491994" target="_blank">
                     <img src="https://www.elago.com/cdn/shop/files/DESK-MAGMAT-ST_Amazon.jpg?v=1711750933&width=3000" alt="Elago Smart Magnetic Desk Mat" class="item-image">
                 </a>
@@ -227,6 +356,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Elago Smart Magnetic Folio Board" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.elago.com/products/smart-magnetic-folio-board?variant=45154474229914" target="_blank">
                     <img src="https://www.elago.com/cdn/shop/files/DESK-FLO-ST_Amazon.jpg?v=1722881751&width=3000" alt="Elago Smart Magnetic Folio Board" class="item-image">
                 </a>
@@ -238,6 +371,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Elago 15W Wireless Charging Pad (MagSafe)" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.elago.com/products/15w-wireless-charging-pad-magsafe?variant=45154455421082" target="_blank">
                     <img src="https://www.elago.com/cdn/shop/files/EMSPAD15W-ST-KR2.jpg?v=1751264071&width=3000" alt="Elago 15W Wireless Charging Pad" class="item-image">
                 </a>
@@ -249,6 +386,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Elago H Stand" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.elago.com/products/h-stand-3-colors?variant=40132748968090" target="_blank">
                     <img src="https://www.elago.com/cdn/shop/products/ST-H_Amazon_2.jpg?v=1713932903&width=3000" alt="Elago H Stand" class="item-image">
                 </a>
@@ -260,6 +401,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Anker Prime USB-C Cable 3ft 240W" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.anker.com/products/a88e2-anker-prime-usb-c-cable-3-ft-240w-upcycled-braided?variant=43931966537878" target="_blank">
                     <img src="https://cdn.shopify.com/s/files/1/0493/9834/9974/files/A88E2012_Rich_image_no_copy_2000x2000px.png?v=1739783322" alt="Anker Prime USB-C Cable" class="item-image">
                 </a>
@@ -274,6 +419,10 @@
         <h2>Home & Bedding</h2>
         <div class="wishlist-grid">
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Organic Ribbed Cotton Coverlet Set" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.quince.com/en-us/home/ribbed-cotton-coverlet-set?color=olive&size=king%2Fcal-king" target="_blank">
                     <img src="https://images.quince.com/4QxXgVjfl0gSXx39xWPedH/1ddcdc500a4c2d25ff6c0b56f1f7a6b7/Organic_Ribbed_Cotton_Coverlet_Set_Olive__1_.jpg?w=176&q=50&h=220&fm=webp&reqOrigin=website-ssr" alt="Cotton Coverlet Set" class="item-image">
                 </a>
@@ -285,6 +434,10 @@
             </div>
             
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="AiryWeight Eucalyptus Sheet Set" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://sijohome.com/collections/sheets/products/eucalyptus-sheets?variant=41212157886546" target="_blank">
                     <img src="https://sijohome.com/cdn/shop/products/EucalyptusSheetSetSnowLogo_1400x.webp?v=1738767926" alt="Eucalyptus Sheet Set" class="item-image">
                 </a>
@@ -296,6 +449,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Aera Poetry Mini Fragrance" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.aeraforhome.com/collections/fragrances/products/poetry-mini" target="_blank">
                     <img src="https://www.aeraforhome.com/cdn/shop/files/mini-fragrance-sf-poetry-shadow_2cffef09-c1c8-4ade-97c8-30cfde2cc942.png?v=1762439610&width=250" alt="Aera Poetry Mini Fragrance" class="item-image">
                 </a>
@@ -310,6 +467,10 @@
         <h2>Photography</h2>
         <div class="wishlist-grid">
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Kodak 35mm Professional Portra 400 Film (5-Pack)" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.bhphotovideo.com/c/product/742308-USA/Kodak_6031678_35mm_Professional_Portra_400.html" target="_blank">
                     <img src="https://www.bhphotovideo.com/images/fb/Kodak_6031678_35mm_Professional_Portra_400_742308.jpg" alt="Kodak Portra 400 Film" class="item-image">
                 </a>
@@ -324,6 +485,10 @@
         <h2>Beauty & Personal Care</h2>
         <div class="wishlist-grid">
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Plumscreen SPF 31" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://credobeauty.com/products/plumscreen-spf-31" target="_blank">
                     <img src="https://credobeauty.com/cdn/shop/products/Plumscreen-1440x1440_1946x.png?v=1762201526" alt="Plumscreen SPF 31" class="item-image">
                 </a>
@@ -335,6 +500,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Typology Radiance Botanical Night Serum" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://us.typology.com/products/radiance-botanical-night-serum" target="_blank">
                     <img src="https://media.typology.com/storyblok/1500x1500/031772627c/radiance_night_serum_1.jpg" alt="Typology Radiance Botanical Night Serum" class="item-image">
                 </a>
@@ -346,6 +515,10 @@
             </div>
             
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Typology Eyelashes and Brows Serum" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://us.typology.com/products/eyelashes-and-brows-serum" target="_blank">
                     <img src="https://imgs.search.brave.com/kVF-yOf5E6Q1dbQysjvL35UfZEcaMuBkyZ0YBHbslpw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdG9y/YWdlLnNraW5zb3J0/LmNvbS8xNWNjb2kx/ZXZ1YzYzcjR2am45/cWtjcXpjaHBl" alt="Typology Lash & Brow Serum" class="item-image">
                 </a>
@@ -356,7 +529,11 @@
                 <div class="item-price">$37.00</div>
             </div>
             
-           <div class="item-card">
+            <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Typology Hydrating Moisturizer" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://us.typology.com/products/hydrating-moisturizer" target="_blank">
                     <img src="https://media.typology.com/storyblok/1500x1500/0317726279/hydrating_moisturizer.jpg" alt="Typology Hydrating Moisturizer" class="item-image">
                 </a>
@@ -368,6 +545,10 @@
             </div>
             
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Typology Tinted Lip Oil" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://us.typology.com/products/tinted-lip-oil" target="_blank">
                     <img src="https://imgs.search.brave.com/qQnDNudiMap0SjPO5c-qXGAUlxMIoJzRcOWfLHB0zZc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS50eXBvbG9neS5j/b20vc3RvcnlibG9r/LzE2MDB4MTYwMC83/MzcxYjc5OWRkL3Q0/MF80MDA1X3BhY2tz/aG90X3dlYl8xNjAw/eDE2MDAtdGVpbnRl/X3NlcnVtLmpwZz90/d2ljPXYxL3F1YWxp/dHk9NzA" alt="Typology Tinted Lip Oil" class="item-image">
                 </a>
@@ -379,9 +560,13 @@
             </div>
         </div>
 
-      <h2>Clothing</h2>
+        <h2>Clothing</h2>
         <div class="wishlist-grid">
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Mate Organic Cotton Sock 5-Pack" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://matethelabel.com/products/organic-cotton-sock-5-pack-bone-forest-maple-jet-black-birch" target="_blank">
                     <img src="https://matethelabel.com/cdn/shop/files/organic_sock_5_pack_f790e479-7f45-4ee1-b6d9-1885b1ea1474_1080x.jpg?v=1761839052" alt="Mate Organic Cotton Sock 5-Pack" class="item-image">
                 </a>
@@ -393,50 +578,70 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Mate Fleece Oversized Sweatshirt - Jet Black" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://matethelabel.com/collections/all/products/fleece-oversized-sweatshirt-jet-black?variant=39849722216626" target="_blank">
                     <img src="https://matethelabel.com/cdn/shop/files/20250127_LightWork_MateTheLabel_ApparelFlats_SetB_OrganicFleeceOversizedSweatshirt_JBLK_0114_04cfe20a-75e5-47d2-b7aa-07a3180bdf5c_900x.jpg?v=1745858520" alt="Mate Fleece Oversized Sweatshirt" class="item-image">
                 </a>
                 <div class="item-name">
-                    <a href="https://matethelabel.com/collections/all/products/fleece-oversized-sweatshirt-jet-black?variant=39849722216626" target="_blank" class="item-link">Mate Fleece Oversized Sweatshirt</a>
+                    <a href="https://matethelabel.com/collections/all/products/fleece-oversized-sweatshirt-jet-black?variant=39849722216626" target="_blank" class="item-link">Mate Fleece Oversized Sweatshirt - Jet Black</a>
                 </div>
                 <div class="item-details">Size: M/L | Color: Jet Black</div>
                 <div class="item-price">$88.00</div>
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Mate Fleece Oversized Sweatshirt - Heather Gray" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://matethelabel.com/collections/all/products/fleece-oversized-sweatshirt-heather-grey" target="_blank">
                     <img src="https://matethelabel.com/cdn/shop/files/20250127_LightWork_MateTheLabel_ApparelFlats_SetB_OrganicFleeceOversizedSweatshirt_HGR_0098_5881d260-54b4-47ba-b1bc-c45da93a8032_1500x2000_1_optimized_900x.jpg?v=1754504189" alt="Mate Fleece Oversized Sweatshirt" class="item-image">
                 </a>
                 <div class="item-name">
-                    <a href="https://matethelabel.com/collections/all/products/fleece-oversized-sweatshirt-heather-grey" target="_blank" class="item-link">Mate Fleece Oversized Sweatshirt</a>
+                    <a href="https://matethelabel.com/collections/all/products/fleece-oversized-sweatshirt-heather-grey" target="_blank" class="item-link">Mate Fleece Oversized Sweatshirt - Heather Gray</a>
                 </div>
                 <div class="item-details">Size: M/L | Color: Heather Gray</div>
                 <div class="item-price">$88.00</div>
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Mate Organic Stretch Racer Tank - Multi" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://matethelabel.com/collections/all/products/organic-stretch-racer-tank-bone-1?variant=42815731990706" target="_blank">
                     <img src="https://matethelabel.com/cdn/shop/files/20250127_LightWork_MateTheLabel_ApparelFlats_SetA_OrganicStretchRacerTank_BON_0019_5991c0bb-ea76-4420-aa69-445d9c9295e1_900x.jpg?v=1754439097" alt="Mate Organic Stretch Racer Tank" class="item-image">
                 </a>
                 <div class="item-name">
-                    <a href="https://matethelabel.com/collections/all/products/organic-stretch-racer-tank-bone-1?variant=42815731990706" target="_blank" class="item-link">Mate Organic Stretch Racer Tank</a>
+                    <a href="https://matethelabel.com/collections/all/products/organic-stretch-racer-tank-bone-1?variant=42815731990706" target="_blank" class="item-link">Mate Organic Stretch Racer Tank - Multi</a>
                 </div>
                 <div class="item-details">Size: S | Colors: Bone, Jet Black, Mocha, Pebble</div>
                 <div class="item-price">$42.00</div>
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Mate Organic Stretch Racer Tank - Jet Black" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://matethelabel.com/collections/all/products/organic-stretch-racer-tank-jet-black-1" target="_blank">
                     <img src="https://matethelabel.com/cdn/shop/files/20250127_LightWork_MateTheLabel_ApparelFlats_SetA_OrganicStretchRacerTank_JBLK_0024_1500x2000_1_optimized_1_optimized_5d6d7846-3de4-4e84-b1f6-433285c316ca_900x.jpg?v=1754501679" alt="Mate Organic Stretch Racer Tank" class="item-image">
                 </a>
                 <div class="item-name">
-                    <a href="https://matethelabel.com/collections/all/products/organic-stretch-racer-tank-jet-black-1" target="_blank" class="item-link">Mate Organic Stretch Racer Tank</a>
+                    <a href="https://matethelabel.com/collections/all/products/organic-stretch-racer-tank-jet-black-1" target="_blank" class="item-link">Mate Organic Stretch Racer Tank - Jet Black</a>
                 </div>
                 <div class="item-details">Size: S | Color: Jet Black</div>
                 <div class="item-price">$42.00</div>
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Pact Airplane Departures Set" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://wearpact.com/women/apparel/all%20tops/airplane%20departures%20set/bdl-wgl2-chhr" target="_blank">
                     <img src="https://static.wearpact.com/img/product/women/wgl2-chhr-1-1755034253_thumb.jpg" alt="Pact Airplane Departures Set" class="item-image">
                 </a>
@@ -448,6 +653,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Pact Airplane Classic Set" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://wearpact.com/women/apparel/all%20tops/airplane%20classic%20set/bdl-wog2-char" target="_blank">
                     <img src="https://static.wearpact.com/img/product/women/wog2-char-1-1755034564_thumb.jpg" alt="Pact Airplane Classic Set" class="item-image">
                 </a>
@@ -459,6 +668,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Pact Airplane Bon Voyage Set" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://wearpact.com/women/apparel/all%20tops/airplane%20bon%20voyage%20set/bdl-wbv2-mdbl" target="_blank">
                     <img src="https://static.wearpact.com/img/product/women/wbv2-mdbl-1-1757349395_thumb.jpg" alt="Pact Airplane Bon Voyage Set" class="item-image">
                 </a>
@@ -470,6 +683,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Mate Organic Cotton Classic Tee" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://matethelabel.com/products/organic-cotton-classic-tee-bone" target="_blank">
                     <img src="https://matethelabel.com/cdn/shop/files/20250128_LightWork_MateTheLabel_ApparelFlats_SetB_OrganicCottonClassicTee_BON_0410_dc0fb29d-4da1-44bb-b35a-b6bf8b3b3e1e_900x.jpg?v=1743097086" alt="Mate Organic Cotton Classic Tee" class="item-image">
                 </a>
@@ -481,6 +698,10 @@
             </div>
 
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Mate Organic Cotton Long Sleeve Tee" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://matethelabel.com/collections/gifts-under-52/products/organic-cotton-long-sleeve-tee-bone?variant=44359422705842" target="_blank">
                     <img src="https://matethelabel.com/cdn/shop/files/20250128_LightWork_MateTheLabel_ApparelFlats_SetB_OrganicCottonLSTee_PBL_0385_508add5b-17a3-4363-b212-449b6514f337_900x.jpg?v=1743102271" alt="Mate Organic Cotton Long Sleeve Tee" class="item-image">
                 </a>
@@ -495,6 +716,10 @@
         <h2>Books & Learning</h2>
         <div class="wishlist-grid">
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Vogue: The Jewellery by Carol Woolton" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.barnesandnoble.com/w/vogue-the-jewellery-carol-woolton/1122474956" target="_blank">
                     <img src="https://prodimage.images-bn.com/pimages/9781840917994_p0_v2_s600x595.jpg" alt="Vogue: The Jewellery" class="item-image">
                 </a>
@@ -506,6 +731,10 @@
             </div>
             
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Simple Soldering: A Beginner's Guide to Jewelry Making Book" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.riogrande.com/product/simple-soldering-a-beginners-guide-to-jewelry-making-book/550799GP/?code=550799" target="_blank">
                     <img src="https://www.riogrande.com/cdn-cgi/image/width=1088,height=1088/globalassets/products/550799/550799.jpg" alt="Simple Soldering Book" class="item-image">
                 </a>
@@ -520,6 +749,10 @@
         <h2>Gift Cards & Subscriptions</h2>
         <div class="wishlist-grid">
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Bookshop.org Gift Card" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://bookshop.org/gift_cards" target="_blank">
                     <img src="https://rails-assets-us.bookshop.org/assets/sweater-gift-card-2025-static-no-snow-no-shadow-5e5b2e15375e4a1b754a90d8b0d7c57798d92e7ba0f07cf699cfcfa1f41ec94f.png" alt="Bookshop.org Gift Card" class="item-image">
                 </a>
@@ -531,6 +764,10 @@
             </div>
             
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Mysa Natural Wine Club Gift" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://mysa.wine/products/natural-wine-club-gift" target="_blank">
                     <img src="https://mysa.wine/cdn/shop/files/mysa-gift-club.jpg?v=1737458043&width=1462" alt="Mysa Natural Wine Club Gift" class="item-image">
                 </a>
@@ -542,6 +779,10 @@
             </div>
             
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Rio Grande Gift Credit" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://www.riogrande.com/account/login/?ReturnUrl=/gift-credit/" target="_blank">
                     <img src="https://www.riogrande.com/cdn-cgi/image/quality=100/globalassets/header/megamenu/2022-branded-tools-swanstrom-square-1_cropped.png" alt="Rio Grande Gift Credit" class="item-image">
                 </a>
@@ -553,6 +794,10 @@
             </div>
             
             <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="The Darkroom Gift Card" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
                 <a href="https://thedarkroom.com/shop/product/gift-card/" target="_blank">
                     <img src="https://thedarkroom.com/shop/wp-content/uploads/2016/10/The-Darkroom-Gift-Card-SITE-holiday-promo.png" alt="The Darkroom Gift Card" class="item-image">
                 </a>
