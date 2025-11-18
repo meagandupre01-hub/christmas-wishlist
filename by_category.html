@@ -166,8 +166,6 @@
         // Google Sheets data
         const SHEET_ID = '1SFTGIrZoCDig6IdBDbxwaxAMCu4WMynu4o6RvmJPj4E';
         const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
-
-        // Store purchased items in localStorage
         let purchasedItems = JSON.parse(localStorage.getItem('purchasedItems')) || {};
 
         // Fetch data from Google Sheets
@@ -498,7 +496,7 @@
             </div>
         </div>
 
-        <h2>Photography</h2>
+        <h2>Photography & Art</h2>
         <div class="wishlist-grid">
             <div class="item-card">
                 <div class="checkbox-container">
@@ -514,7 +512,21 @@
                 <div class="item-details"></div>
                 <div class="item-price">$74.95</div>
             </div>
-        </div>
+            <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Lookie Here Print" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
+                <a href="https://lordcowboy.com/printshop/p/lookiehere" target="_blank">
+                    <img src="https://images.squarespace-cdn.com/content/v1/5f78e8a8e262891544a8fa06/1647232452921-AZLNHBGS94UIVYKUSOLA/FORWEB.png?format=1500w" alt="Lookie Here Print" class="item-image">
+                </a>
+                <div class="item-name">
+                    <a href="https://lordcowboy.com/printshop/p/lookiehere" target="_blank" class="item-link">Lookie Here Print</a>
+                </div>
+                <div class="item-details">Size: 9x12</div>
+                <div class="item-price">$60.00</div>
+            </div>
+        
 
         <h2>Beauty & Personal Care</h2>
         <div class="wishlist-grid">
