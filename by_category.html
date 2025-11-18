@@ -166,6 +166,8 @@
         // Google Sheets data
         const SHEET_ID = '1SFTGIrZoCDig6IdBDbxwaxAMCu4WMynu4o6RvmJPj4E';
         const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+
+        // Store purchased items in localStorage
         let purchasedItems = JSON.parse(localStorage.getItem('purchasedItems')) || {};
 
         // Fetch data from Google Sheets
@@ -422,6 +424,21 @@
         <div class="wishlist-grid">
             <div class="item-card">
                 <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Avocado Molded Latex Pillow" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
+                <a href="https://www.avocadogreenmattress.com/collections/pillows/products/molded-organic-latex-pillow?variant=41561365381270" target="_blank">
+                    <img src="https://www.avocadogreenmattress.com/cdn/shop/files/AvocadoMoldedLatexOrganicPillow.jpg?v=1759448046" alt="Avocado Molded Latex Pillow" class="item-image">
+                </a>
+                <div class="item-name">
+                    <a href="https://www.avocadogreenmattress.com/collections/pillows/products/molded-organic-latex-pillow?variant=41561365381270" target="_blank" class="item-link">Avocado Molded Latex Pillow</a>
+                </div>
+                <div class="item-details">Size: King | Pack Options: Two Pack</div>
+                <div class="item-price">$229.00</div>
+            </div>
+
+            <div class="item-card">
+                <div class="checkbox-container">
                     <input type="checkbox" class="item-checkbox" data-item-name="Organic Ribbed Cotton Coverlet Set" onchange="togglePurchased(this)">
                     <label class="checkbox-label">Purchased</label>
                 </div>
@@ -452,36 +469,6 @@
 
             <div class="item-card">
                 <div class="checkbox-container">
-                    <input type="checkbox" class="item-checkbox" data-item-name="Aera Poetry Mini Fragrance" onchange="togglePurchased(this)">
-                    <label class="checkbox-label">Purchased</label>
-                </div>
-                <a href="https://www.aeraforhome.com/collections/fragrances/products/poetry-mini" target="_blank">
-                    <img src="https://www.aeraforhome.com/cdn/shop/files/mini-fragrance-sf-poetry-shadow_2cffef09-c1c8-4ade-97c8-30cfde2cc942.png?v=1762439610&width=250" alt="Aera Poetry Mini Fragrance" class="item-image">
-                </a>
-                <div class="item-name">
-                    <a href="https://www.aeraforhome.com/collections/fragrances/products/poetry-mini" target="_blank" class="item-link">Aera Poetry Mini Fragrance</a>
-                </div>
-                <div class="item-details"></div>
-                <div class="item-price">$30.00</div>
-            </div>
-
-            <div class="item-card">
-                <div class="checkbox-container">
-                    <input type="checkbox" class="item-checkbox" data-item-name="Avocado Molded Latex Pillow" onchange="togglePurchased(this)">
-                    <label class="checkbox-label">Purchased</label>
-                </div>
-                <a href="https://www.avocadogreenmattress.com/collections/pillows/products/molded-organic-latex-pillow?variant=41561365381270" target="_blank">
-                    <img src="https://www.avocadogreenmattress.com/cdn/shop/files/AvocadoMoldedLatexOrganicPillow.jpg?v=1759448046" alt="Avocado Molded Latex Pillow" class="item-image">
-                </a>
-                <div class="item-name">
-                    <a href="https://www.avocadogreenmattress.com/collections/pillows/products/molded-organic-latex-pillow?variant=41561365381270" target="_blank" class="item-link">Avocado Molded Latex Pillow</a>
-                </div>
-                <div class="item-details">Size: King | Pack Options: Two Pack</div>
-                <div class="item-price">$229.00</div>
-            </div>
-
-            <div class="item-card">
-                <div class="checkbox-container">
                     <input type="checkbox" class="item-checkbox" data-item-name="Organic Waterproof Pillow Protector" onchange="togglePurchased(this)">
                     <label class="checkbox-label">Purchased</label>
                 </div>
@@ -493,6 +480,21 @@
                 </div>
                 <div class="item-details">Size: King | Quantity: 2</div>
                 <div class="item-price">$104.00</div>
+            </div>
+
+            <div class="item-card">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="item-checkbox" data-item-name="Aera Poetry Mini Fragrance" onchange="togglePurchased(this)">
+                    <label class="checkbox-label">Purchased</label>
+                </div>
+                <a href="https://www.aeraforhome.com/collections/fragrances/products/poetry-mini" target="_blank">
+                    <img src="https://www.aeraforhome.com/cdn/shop/files/mini-fragrance-sf-poetry-shadow_2cffef09-c1c8-4ade-97c8-30cfde2cc942.png?v=1762439610&width=250" alt="Aera Poetry Mini Fragrance" class="item-image">
+                </a>
+                <div class="item-name">
+                    <a href="https://www.aeraforhome.com/collections/fragrances/products/poetry-mini" target="_blank" class="item-link">Aera Poetry Mini Fragrance</a>
+                </div>
+                <div class="item-details"></div>
+                <div class="item-price">$30.00</div>
             </div>
         </div>
 
@@ -526,7 +528,7 @@
                 <div class="item-details">Size: 9x12</div>
                 <div class="item-price">$60.00</div>
             </div>
-        
+        </div>
 
         <h2>Beauty & Personal Care</h2>
         <div class="wishlist-grid">
