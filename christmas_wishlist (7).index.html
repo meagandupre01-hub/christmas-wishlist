@@ -1,173 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christmas Wishlist - Gifts Over $100</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #faf8f5;
-            color: #2c2c2c;
-            padding: 40px 20px;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-        }
-        
-        h1 {
-            color: #2c2c2c;
-            margin-bottom: 10px;
-            font-size: 32px;
-        }
-        
-        .subtitle {
-            color: #c41e3a;
-            font-size: 18px;
-            margin-bottom: 30px;
-            font-weight: 500;
-        }
-        
-        h2 {
-            color: #c41e3a;
-            margin-top: 50px;
-            margin-bottom: 10px;
-            font-size: 28px;
-            padding-top: 30px;
-            border-top: 2px solid #c41e3a;
-        }
-        
-        h2:first-of-type {
-            border-top: none;
-            padding-top: 0;
-        }
-        
-        h3 {
-            color: #1e5631;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            font-size: 20px;
-            font-weight: 600;
-        }
-        
-        .wishlist-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-bottom: 30px;
-        }
-        
-        .wishlist-table thead {
-            background-color: #faf8f5;
-        }
-        
-        .wishlist-table th {
-            padding: 16px;
-            text-align: left;
-            font-weight: 600;
-            color: #2c2c2c;
-            border-bottom: 2px solid #e8e5df;
-        }
-        
-        .wishlist-table th:first-child {
-            border-radius: 8px 0 0 0;
-        }
-        
-        .wishlist-table th:last-child {
-            border-radius: 0 8px 0 0;
-            text-align: right;
-        }
-        
-        .wishlist-table tbody tr {
-            border-bottom: 1px solid #e8e5df;
-            transition: background-color 0.2s ease;
-        }
-        
-        .wishlist-table tbody tr:hover {
-            background-color: #faf8f5;
-        }
-        
-        .wishlist-table tbody tr:last-child {
-            border-bottom: none;
-        }
-        
-        .wishlist-table td {
-            padding: 20px 16px;
-            vertical-align: middle;
-        }
-        
-        .item-image {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            background-color: #faf8f5;
-            border-radius: 6px;
-            padding: 8px;
-            display: block;
-        }
-        
-        .item-name {
-            font-size: 16px;
-            font-weight: 500;
-            color: #2c2c2c;
-            line-height: 1.4;
-        }
-        
-        .item-link {
-            color: #2c2c2c;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-        
-        .item-link:hover {
-            color: #ff7f66;
-        }
-        
-        .item-price {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1e5631;
-            text-align: right;
-        }
-        
-        .total-section {
-            border-top: 2px solid #e8e5df;
-            padding-top: 20px;
-            text-align: right;
-        }
-        
-        .total-label {
-            font-size: 18px;
-            color: #666;
-            margin-right: 12px;
-        }
-        
-        .total-amount {
-            font-size: 28px;
-            font-weight: 700;
-            color: #ff7f66;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Wishlist - Gifts Over $100</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #faf8f5;
+            color: #2c2c2c;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #2c2c2c;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        .subtitle {
+            color: #c41e3a;
+            font-size: 18px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        
+        h2 {
+            color: #c41e3a;
+            margin-top: 50px;
+            margin-bottom: 10px;
+            font-size: 28px;
+            padding-top: 30px;
+            border-top: 2px solid #c41e3a;
+        }
+        
+        h2:first-of-type {
+            border-top: none;
+            padding-top: 0;
+        }
+        
+        h3 {
+            color: #1e5631;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .wishlist-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 30px;
+        }
+        
+        .wishlist-table thead {
+            background-color: #faf8f5;
+        }
+        
+        .wishlist-table th {
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #2c2c2c;
+            border-bottom: 2px solid #e8e5df;
+        }
+        
+        .wishlist-table th:first-child {
+            border-radius: 8px 0 0 0;
+        }
+        
+        .wishlist-table th:last-child {
+            border-radius: 0 8px 0 0;
+            text-align: right;
+        }
+        
+        .wishlist-table tbody tr {
+            border-bottom: 1px solid #e8e5df;
+            transition: background-color 0.2s ease;
+        }
+        
+        .wishlist-table tbody tr:hover {
+            background-color: #faf8f5;
+        }
+        
+        .wishlist-table tbody tr:last-child {
+            border-bottom: none;
+        }
+        
+        .wishlist-table td {
+            padding: 20px 16px;
+            vertical-align: middle;
+        }
+        
+        .item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            background-color: #faf8f5;
+            border-radius: 6px;
+            padding: 8px;
+            display: block;
+        }
+        
+        .item-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: #2c2c2c;
+            line-height: 1.4;
+        }
+        
+        .item-link {
+            color: #2c2c2c;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .item-link:hover {
+            color: #ff7f66;
+        }
+        
+        .item-price {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e5631;
+            text-align: right;
+        }
+        
+        .total-section {
+            border-top: 2px solid #e8e5df;
+            padding-top: 20px;
+            text-align: right;
+        }
+        
+        .total-label {
+            font-size: 18px;
+            color: #666;
+            margin-right: 12px;
+        }
+        
+        .total-amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ff7f66;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Christmas Wishlist</h1>
-        
-        <h2>Gifts Over $100</h2>
-        
-        <h3>Electronics</h3>
+    <div class="container">
+        <h1>🎄 Meagan's Christmas Wishlist 2025 🎁</h1>
+        <div class="subtitle">Organized by Price Category</div>
+        
+        <h2>Gifts Over $100</h2>
+        
+        <h3>Electronics</h3>
+        <table class="wishlist-table">
+            <thead>
+                <tr>
+                    <th style="width: 120px;">Image</th>
+                    <th>Item</th>
+                    <th style="width: 120px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://www.logitech.com/en-us/shop/p/mx-keys-s-combo-for-mac" target="_blank">
+                            <img src="https://resource.logitech.com/w_544,h_466,ar_7:6,c_pad,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/combos/mx-keys-s-combo-for-mac/buy/gallery/mx-key-s-combo-mac-space-grey-gallery-3-us.png" alt="Logitech MX Keys S Combo" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.logitech.com/en-us/shop/p/mx-keys-s-combo-for-mac" target="_blank" class="item-link">
+                            **Logitech - MX Keys S Combo for Mac**
+                        </a>
+                        <br><small>Home office item</small>
+                    </td>
+                    <td class="item-price">$199.99</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://us.kobobooks.com/products/kobo-clara-colour?variant=43784716714054" target="_blank">
+                            <img src="https://us.kobobooks.com/cdn/shop/files/1-Spa-Colour-EN-Device_Front_1080x1080_07801ff1-4021-4bab-a615-36f27924cdaa_962x962.png?v=1757383709" alt="Kobo Clara Colour" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://us.kobobooks.com/products/kobo-clara-colour?variant=43784716714054" target="_blank" class="item-link">
+                            **Kobo Clara Colour**
+                        </a>
+                        <br><small>E-reader</small>
+                    </td>
+                    <td class="item-price">$159.99</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://www.bestbuy.com/product/edifier-r1280t-powered-bookshelf-speakers-computer-speakers-studio-monitor-speakers-2-0-active-near-field-monitors-42-watts-rms-brown/J3WSK7SC2Z" target="_blank">
+                            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/0d6c873c-4635-4445-8eca-2d9af0d73805.jpg;maxHeight=1920;maxWidth=900?format=webp" alt="Edifier Speakers" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.bestbuy.com/product/edifier-r1280t-powered-bookshelf-speakers-computer-speakers-studio-monitor-speakers-2-0-active-near-field-monitors-42-watts-rms-brown/J3WSK7SC2Z" target="_blank" class="item-link">
+                            **Edifier - R1280T Powered Bookshelf Speakers**
+                        </a>
+                        <br><small>For my turntable from Kirk last Christmas</small>
+                    </td>
+                    <td class="item-price">$149.99</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://www.startech.com/en-us/kvm-switches-accessories/sv211hduc" target="_blank">
+                            <img src="https://media.startech.com/cms/products/gallery_large/sv211hduc.main.jpg" alt="USB C KVM Switch" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.startech.com/en-us/kvm-switches-accessories/sv211hduc" target="_blank" class="item-link">
+                            **StarTech - 2 Port USB C KVM Switch**
+                        </a>
+                        <br><small>Home office item</small>
+                    </td>
+                    <td class="item-price">$126.99</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Home & Bedding</h3>
+        <table class="wishlist-table">
+            <thead>
+                <tr>
+                    <th style="width: 120px;">Image</th>
+                    <th>Item</th>
+                    <th style="width: 120px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://www.avocadogreenmattress.com/collections/pillows/products/molded-organic-latex-pillow?variant=41561365381270" target="_blank">
+                            <img src="https://www.avocadogreenmattress.com/cdn/shop/files/AvocadoMoldedLatexOrganicPillow.jpg?v=1759448046" alt="Avocado Molded Latex Pillow" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.avocadogreenmattress.com/collections/pillows/products/molded-organic-latex-pillow?variant=41561365381270" target="_blank" class="item-link">
+                            **Avocado Molded Latex Pillow**
+                        </a>
+                        <br><small>Size: King | Pack Options: Two Pack</small>
+                    </td>
+                    <td class="item-price">$229.00</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://www.avocadogreenmattress.com/collections/pillows/products/waterproof-pillow-protector?variant=39623174848662" target="_blank">
+                            <img src="https://www.avocadogreenmattress.com/cdn/shop/products/AvocadoGreenMattressWaterproofPillowProtector.jpg?v=1762198771" alt="Organic Waterproof Pillow Protector" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.avocadogreenmattress.com/collections/pillows/products/waterproof-pillow-protector?variant=39623174848662" target="_blank" class="item-link">
+                            **Organic Waterproof Pillow Protector**
+                        </a>
+                        <br><small>Size: King | Quantity: 2</small>
+                    </td>
+                    <td class="item-price">$104.00</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://www.quince.com/en-us/home/ribbed-cotton-coverlet-set?color=olive&size=king%2Fcal-king" target="_blank">
+                            <img src="https://images.quince.com/4QxXgVjfl0gSXx39xWPedH/1ddcdc500a4c2d25ff6c0b56f1f7a6b7/Organic_Ribbed_Cotton_Coverlet_Set_Olive__1_.jpg?w=176&q=50&h=220&fm=webp&reqOrigin=website-ssr" alt="Cotton Coverlet Set" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.quince.com/en-us/home/ribbed-cotton-coverlet-set?color=olive&size=king%2Fcal-king" target="_blank" class="item-link">
+                            **Organic Ribbed Cotton Coverlet Set**
+                        </a>
+                        <br><small>Color: Olive | Size: King/Cal King</small>
+                    </td>
+                    <td class="item-price">$149.90</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://sijohome.com/collections/sheets/products/eucalyptus-sheets?variant=41212157886546" target="_blank">
+                            <img src="https://sijohome.com/cdn/shop/products/EucalyptusSheetSetSnowLogo_1400x.webp?v=1738767926" alt="Eucalyptus Sheet Set" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://sijohome.com/collections/sheets/products/eucalyptus-sheets?variant=41212157886546" target="_blank" class="item-link">
+                            **AiryWeight Eucalyptus Sheet Set**
+                        </a>
+                        <br><small>Color: Snow | Size: King/Cal King, No Flat Sheet</small>
+                    </td>
+                    <td class="item-price">$130.00</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Clothing & Accessories</h3>
+        <table class="wishlist-table">
+            <thead>
+                <tr>
+                    <th style="width: 120px;">Image</th>
+                    <th>Item</th>
+                    <th style="width: 120px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://wearpact.com/women/apparel/all%20tops/airplane%20departures%20set/bdl-wgl2-chhr" target="_blank">
+                            <img src="https://static.wearpact.com/img/product/women/wgl2-chhr-1-1755034253_thumb.jpg" alt="Pact Airplane Departures Set" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://wearpact.com/women/apparel/all%20tops/airplane%20departures%20set/bdl-wgl2-chhr" target="_blank" class="item-link">
+                            **Pact Airplane Departures Set**
+                        </a>
+                        <br><small>Size: M (cardigan & pants) | Colors: Chocolate Heather, Deep Taupe Heather</small>
+                    </td>
+                    <td class="item-price">$118.00</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://wearpact.com/women/apparel/all%20tops/airplane%20classic%20set/bdl-wog2-char" target="_blank">
+                            <img src="https://static.wearpact.com/img/product/women/wog2-char-1-1755034564_thumb.jpg" alt="Pact Airplane Classic Set" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://wearpact.com/women/apparel/all%20tops/airplane%20classic%20set/bdl-wog2-char" target="_blank" class="item-link">
+                            **Pact Airplane Classic Set**
+                        </a>
+                        <br><small>Size: M (cardigan & pants) | Colors: Charcoal Heather, Black</small>
+                    </td>
+                    <td class="item-price">$118.00</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://wearpact.com/women/apparel/all%20tops/airplane%20bon%20voyage%20set/bdl-wbv2-mdbl" target="_blank">
+                            <img src="https://static.wearpact.com/img/product/women/wbv2-mdbl-1-1757349395_thumb.jpg" alt="Pact Airplane Bon Voyage Set" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://wearpact.com/women/apparel/all%20tops/airplane%20bon%20voyage%20set/bdl-wbv2-mdbl" target="_blank" class="item-link">
+                            **Pact Airplane Bon Voyage Set**
+                        </a>
+                        <br><small>Size: M (cardigan & pants) | Color: Midnight Blue</small>
+                    </td>
+                    <td class="item-price">$118.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Athletic Gear</h3>
         <table class="wishlist-table">
             <thead>
                 <tr>
@@ -179,564 +381,597 @@
             <tbody>
                 <tr>
                     <td>
-                        <a href="https://www.logitech.com/en-us/shop/p/mx-keys-s-combo-for-mac" target="_blank">
-                            <img src="https://resource.logitech.com/w_544,h_466,ar_7:6,c_pad,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/combos/mx-keys-s-combo-for-mac/buy/gallery/mx-key-s-combo-mac-space-grey-gallery-3-us.png" alt="Logitech MX Keys S Combo" class="item-image">
+                        <a href="https://www.on.com/en-us/products/cloudsurfer-max-w-3wf3022/womens/asphalt-ice-shoes-3WF30223396?variant=7" target="_blank">
+                            <img src="https://images.ctfassets.net/hnk2vsx53n6l/1TX7Yc01vKn69JBxRa6cWW/1e87c5296b9725827c7ea866be41ac78/7e115d5b237775eb8a880bef83d8f112010d2f1e.png?w=1600&h=1600&fm=avif&f=center&fit=fill&q=80" alt="Cloudsurfer Max Running Shoe" class="item-image">
                         </a>
                     </td>
                     <td class="item-name">
-                        <a href="https://www.logitech.com/en-us/shop/p/mx-keys-s-combo-for-mac" target="_blank" class="item-link">
-                            Logitech - MX Keys S Combo for Mac
+                        <a href="https://www.on.com/en-us/products/cloudsurfer-max-w-3wf3022/womens/asphalt-ice-shoes-3WF30223396?variant=7" target="_blank" class="item-link">
+                            **Cloudsurfer Max Running Shoe**
                         </a>
+                        <br><small>Size: 7 | Color: Asphalt | Ice</small>
                     </td>
-                    <td class="item-price">$199.99</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://us.kobobooks.com/products/kobo-clara-colour?variant=43784716714054" target="_blank">
-                            <img src="https://us.kobobooks.com/cdn/shop/files/1-Spa-Colour-EN-Device_Front_1080x1080_07801ff1-4021-4bab-a615-36f27924cdaa_962x962.png?v=1757383709" alt="Kobo Clara Colour" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://us.kobobooks.com/products/kobo-clara-colour?variant=43784716714054" target="_blank" class="item-link">
-                            Kobo Clara Colour
-                        </a>
-                    </td>
-                    <td class="item-price">$159.99</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://www.bestbuy.com/product/edifier-r1280t-powered-bookshelf-speakers-computer-speakers-studio-monitor-speakers-2-0-active-near-field-monitors-42-watts-rms-brown/J3WSK7SC2Z" target="_blank">
-                            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/0d6c873c-4635-4445-8eca-2d9af0d73805.jpg;maxHeight=1920;maxWidth=900?format=webp" alt="Edifier Speakers" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.bestbuy.com/product/edifier-r1280t-powered-bookshelf-speakers-computer-speakers-studio-monitor-speakers-2-0-active-near-field-monitors-42-watts-rms-brown/J3WSK7SC2Z" target="_blank" class="item-link">
-                            Edifier - R1280T Powered Bookshelf Speakers
-                        </a>
-                    </td>
-                    <td class="item-price">$149.99</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://www.startech.com/en-us/kvm-switches-accessories/sv211hduc" target="_blank">
-                            <img src="https://media.startech.com/cms/products/gallery_large/sv211hduc.main.jpg" alt="USB C KVM Switch" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.startech.com/en-us/kvm-switches-accessories/sv211hduc" target="_blank" class="item-link">
-                            StarTech - 2 Port USB C KVM Switch
-                        </a>
-                    </td>
-                    <td class="item-price">$126.99</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h3>Home & Bedding</h3>
-        <table class="wishlist-table">
-            <thead>
-                <tr>
-                    <th style="width: 120px;">Image</th>
-                    <th>Item</th>
-                    <th style="width: 120px;">Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a href="https://www.quince.com/en-us/home/ribbed-cotton-coverlet-set?color=olive&size=king%2Fcal-king" target="_blank">
-                            <img src="https://images.quince.com/4QxXgVjfl0gSXx39xWPedH/1ddcdc500a4c2d25ff6c0b56f1f7a6b7/Organic_Ribbed_Cotton_Coverlet_Set_Olive__1_.jpg?w=176&q=50&h=220&fm=webp&reqOrigin=website-ssr" alt="Cotton Coverlet Set" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.quince.com/en-us/home/ribbed-cotton-coverlet-set?color=olive&size=king%2Fcal-king" target="_blank" class="item-link">
-                            Organic Ribbed Cotton Coverlet Set
-                        </a>
-                    </td>
-                    <td class="item-price">$149.90</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://sijohome.com/collections/sheets/products/eucalyptus-sheets?variant=41212157886546" target="_blank">
-                            <img src="https://sijohome.com/cdn/shop/products/EucalyptusSheetSetSnowLogo_1400x.webp?v=1738767926" alt="Eucalyptus Sheet Set" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://sijohome.com/collections/sheets/products/eucalyptus-sheets?variant=41212157886546" target="_blank" class="item-link">
-                            AiryWeight Eucalyptus Sheet Set
-                        </a>
-                    </td>
-                    <td class="item-price">$130.00</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h2>Gifts Over $50</h2>
-        
-        <h3>Electronics</h3>
-        <table class="wishlist-table">
-            <thead>
-                <tr>
-                    <th style="width: 120px;">Image</th>
-                    <th>Item</th>
-                    <th style="width: 120px;">Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a href="https://getsnooz.com/products/snooz-white-noise-machine" target="_blank">
-                            <img src="https://cdn.shopify.com/s/files/1/1378/8621/files/SNOOZ_Original_White_Noise_Machine_Cloud_d455f258-2010-4a25-8931-b04a9fbbb7bb.jpg?v=1756831432&width=1800" alt="Snooz White Noise Machine" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://getsnooz.com/products/snooz-white-noise-machine" target="_blank" class="item-link">
-                            Snooz White Noise Machine
-                        </a>
-                    </td>
-                    <td class="item-price">$79.99</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://www.logitech.com/en-us/shop/p/c920s-pro-hd-webcam" target="_blank">
-                            <img src="https://resource.logitech.com/w_544,h_466,ar_7:6,c_pad,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/webcams/c920s/gallery/c920s-gallery-1.png" alt="Logitech C920S Webcam" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.logitech.com/en-us/shop/p/c920s-pro-hd-webcam" target="_blank" class="item-link">
-                            Logitech C920S Pro HD Webcam
-                        </a>
-                    </td>
-                    <td class="item-price">$69.99</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://www.elago.com/products/magnetic-stand-for-ipads?variant=42899754746010" target="_blank">
-                            <img src="https://www.elago.com/cdn/shop/products/EST-MAG-PAD-DGY.jpg?v=1692202550&width=3000" alt="Elago Magnetic Stand for iPad" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.elago.com/products/magnetic-stand-for-ipads?variant=42899754746010" target="_blank" class="item-link">
-                            Elago Magnetic Stand for iPad
-                        </a>
-                    </td>
-                    <td class="item-price">$59.99</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h3>Photography</h3>
-        <table class="wishlist-table">
-            <thead>
-                <tr>
-                    <th style="width: 120px;">Image</th>
-                    <th>Item</th>
-                    <th style="width: 120px;">Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a href="https://www.bhphotovideo.com/c/product/742308-USA/Kodak_6031678_35mm_Professional_Portra_400.html" target="_blank">
-                            <img src="https://www.bhphotovideo.com/images/fb/Kodak_6031678_35mm_Professional_Portra_400_742308.jpg" alt="Kodak Portra 400 Film" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.bhphotovideo.com/c/product/742308-USA/Kodak_6031678_35mm_Professional_Portra_400.html" target="_blank" class="item-link">
-                            Kodak 35mm Professional Portra 400 Film (5-Pack)
-                        </a>
-                    </td>
-                    <td class="item-price">$74.95</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h3>Beauty & Personal Care</h3>
-        <table class="wishlist-table">
-            <thead>
-                <tr>
-                    <th style="width: 120px;">Image</th>
-                    <th>Item</th>
-                    <th style="width: 120px;">Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a href="https://credobeauty.com/products/plumscreen-spf-31" target="_blank">
-                            <img src="https://credobeauty.com/cdn/shop/products/Plumscreen-1440x1440_1946x.png?v=1762201526" alt="Plumscreen SPF 31" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://credobeauty.com/products/plumscreen-spf-31" target="_blank" class="item-link">
-                            Plumscreen SPF 31
-                        </a>
-                    </td>
-                    <td class="item-price">$54.00</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h2>Gifts Under $50</h2>
-        
-        <h3>Clothing</h3>
-        <table class="wishlist-table">
-            <thead>
-                <tr>
-                    <th style="width: 120px;">Image</th>
-                    <th>Item</th>
-                    <th style="width: 120px;">Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a href="https://matethelabel.com/products/organic-cotton-sock-5-pack-bone-forest-maple-jet-black-birch" target="_blank">
-                            <img src="https://matethelabel.com/cdn/shop/files/organic_sock_5_pack_f790e479-7f45-4ee1-b6d9-1885b1ea1474_1080x.jpg?v=1761839052" alt="Mate Organic Cotton Sock 5-Pack" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://matethelabel.com/products/organic-cotton-sock-5-pack-bone-forest-maple-jet-black-birch" target="_blank" class="item-link">
-                            Mate Organic Cotton Sock 5-Pack
-                        </a>
-                    </td>
-                    <td class="item-price">$48.00</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h3>Electronics</h3>
-        <table class="wishlist-table">
-            <thead>
-                <tr>
-                    <th style="width: 120px;">Image</th>
-                    <th>Item</th>
-                    <th style="width: 120px;">Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a href="https://www.elago.com/products/smart-magnetic-desk-mat?variant=44610019491994" target="_blank">
-                            <img src="https://www.elago.com/cdn/shop/files/DESK-MAGMAT-ST_Amazon.jpg?v=1711750933&width=3000" alt="Elago Smart Magnetic Desk Mat" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.elago.com/products/smart-magnetic-desk-mat?variant=44610019491994" target="_blank" class="item-link">
-                            Elago Smart Magnetic Desk Mat
-                        </a>
-                    </td>
-                    <td class="item-price">$34.99</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://www.elago.com/products/smart-magnetic-folio-board?variant=45154474229914" target="_blank">
-                            <img src="https://www.elago.com/cdn/shop/files/DESK-FLO-ST_Amazon.jpg?v=1722881751&width=3000" alt="Elago Smart Magnetic Folio Board" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.elago.com/products/smart-magnetic-folio-board?variant=45154474229914" target="_blank" class="item-link">
-                            Elago Smart Magnetic Folio Board
-                        </a>
-                    </td>
-                    <td class="item-price">$34.99</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://www.elago.com/products/15w-wireless-charging-pad-magsafe?variant=45154455421082" target="_blank">
-                            <img src="https://www.elago.com/cdn/shop/files/EMSPAD15W-ST-KR2.jpg?v=1751264071&width=3000" alt="Elago 15W Wireless Charging Pad" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.elago.com/products/15w-wireless-charging-pad-magsafe?variant=45154455421082" target="_blank" class="item-link">
-                            Elago 15W Wireless Charging Pad (MagSafe)
-                        </a>
-                    </td>
-                    <td class="item-price">$29.99</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://www.elago.com/products/h-stand-3-colors?variant=40132748968090" target="_blank">
-                            <img src="https://www.elago.com/cdn/shop/products/ST-H_Amazon_2.jpg?v=1713932903&width=3000" alt="Elago H Stand" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.elago.com/products/h-stand-3-colors?variant=40132748968090" target="_blank" class="item-link">
-                            Elago H Stand
-                        </a>
-                    </td>
-                    <td class="item-price">$24.99</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://www.anker.com/products/a88e2-anker-prime-usb-c-cable-3-ft-240w-upcycled-braided?variant=43931966537878" target="_blank">
-                            <img src="https://cdn.shopify.com/s/files/1/0493/9834/9974/files/A88E2012_Rich_image_no_copy_2000x2000px.png?v=1739783322" alt="Anker Prime USB-C Cable" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.anker.com/products/a88e2-anker-prime-usb-c-cable-3-ft-240w-upcycled-braided?variant=43931966537878" target="_blank" class="item-link">
-                            Anker Prime USB-C Cable 3ft 240W
-                        </a>
-                    </td>
-                    <td class="item-price">$19.99</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h3>Home & Bedding</h3>
-        <table class="wishlist-table">
-            <thead>
-                <tr>
-                    <th style="width: 120px;">Image</th>
-                    <th>Item</th>
-                    <th style="width: 120px;">Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a href="https://www.aeraforhome.com/collections/fragrances/products/poetry-mini" target="_blank">
-                            <img src="https://www.aeraforhome.com/cdn/shop/files/mini-fragrance-sf-poetry-shadow_2cffef09-c1c8-4ade-97c8-30cfde2cc942.png?v=1762439610&width=250" alt="Aera Poetry Mini Fragrance" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.aeraforhome.com/collections/fragrances/products/poetry-mini" target="_blank" class="item-link">
-                            Aera Poetry Mini Fragrance
-                        </a>
-                    </td>
-                    <td class="item-price">$30.00</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h3>Beauty & Personal Care</h3>
-        <table class="wishlist-table">
-            <thead>
-                <tr>
-                    <th style="width: 120px;">Image</th>
-                    <th>Item</th>
-                    <th style="width: 120px;">Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a href="https://us.typology.com/products/radiance-botanical-night-serum" target="_blank">
-                            <img src="https://imgs.search.brave.com/PWcbIP3h0CQHqK-YtkkhXPgutn_CjMCOS_aueWsVx-M/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS50eXBvbG9neS5j/b20vc3RvcnlibG9r/LzIxMzh4OTY5L2Yy/NGRiNDMwZWEvZmFs/bF9yYWRpYW5jZV9j/b2xsZWN0aW9uLmpw/Zz90d2ljPXYxL3F1/YWxpdHk9NzA" alt="Typology Radiance Botanical Night Serum" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://us.typology.com/products/radiance-botanical-night-serum" target="_blank" class="item-link">
-                            Typology Radiance Botanical Night Serum
-                        </a>
-                    </td>
-                    <td class="item-price">$39.00</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://us.typology.com/products/eyelashes-and-brows-serum" target="_blank">
-                            <img src="https://imgs.search.brave.com/kVF-yOf5E6Q1dbQysjvL35UfZEcaMuBkyZ0YBHbslpw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdG9y/YWdlLnNraW5zb3J0/LmNvbS8xNWNjb2kx/ZXZ1YzYzcjR2am45/cWtjcXpjaHBl" alt="Typology Lash & Brow Serum" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://us.typology.com/products/eyelashes-and-brows-serum" target="_blank" class="item-link">
-                            Typology Eyelashes and Brows Serum
-                        </a>
-                    </td>
-                    <td class="item-price">$37.00</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://us.typology.com/products/hydrating-moisturizer" target="_blank">
-                            <img src="https://imgs.search.brave.com/kYjWPevfl7kQjEBnhX8WrjsTMhp7PRN5JRXbokQbsxE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS50eXBvbG9neS5j/b20vc3RvcnlibG9r/LzE1MDB4MTUwMC8w/MzE3NzI2Mjc5L3Bw/X2NyZW1lXzAxLmpw/Zz90d2ljPXYxL3F1/YWxpdHk9NzA" alt="Typology Hydrating Moisturizer" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://us.typology.com/products/hydrating-moisturizer" target="_blank" class="item-link">
-                            Typology Hydrating Moisturizer
-                        </a>
-                    </td>
-                    <td class="item-price">$37.00</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://us.typology.com/products/tinted-lip-oil" target="_blank">
-                            <img src="https://imgs.search.brave.com/qQnDNudiMap0SjPO5c-qXGAUlxMIoJzRcOWfLHB0zZc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS50eXBvbG9neS5j/b20vc3RvcnlibG9r/LzE2MDB4MTYwMC83/MzcxYjc5OWRkL3Q0/MF80MDA1X3BhY2tz/aG90X3dlYl8xNjAw/eDE2MDAtdGVpbnRl/X3NlcnVtLmpwZz90/d2ljPXYxL3F1YWxp/dHk9NzA" alt="Typology Tinted Lip Oil" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://us.typology.com/products/tinted-lip-oil" target="_blank" class="item-link">
-                            Typology Tinted Lip Oil
-                        </a>
-                    </td>
-                    <td class="item-price">$27.00</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h3>Books & Learning</h3>
-        <table class="wishlist-table">
-            <thead>
-                <tr>
-                    <th style="width: 120px;">Image</th>
-                    <th>Item</th>
-                    <th style="width: 120px;">Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a href="https://www.barnesandnoble.com/w/vogue-the-jewellery-carol-woolton/1122474956" target="_blank">
-                            <img src="https://prodimage.images-bn.com/pimages/9781840917994_p0_v2_s600x595.jpg" alt="Vogue: The Jewellery" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.barnesandnoble.com/w/vogue-the-jewellery-carol-woolton/1122474956" target="_blank" class="item-link">
-                            Vogue: The Jewellery by Carol Woolton
-                        </a>
-                    </td>
-                    <td class="item-price">$45.00</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://www.riogrande.com/product/simple-soldering-a-beginners-guide-to-jewelry-making-book/550799GP/?code=550799" target="_blank">
-                            <img src="https://www.riogrande.com/cdn-cgi/image/width=1088,height=1088/globalassets/products/550799/550799.jpg" alt="Simple Soldering Book" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.riogrande.com/product/simple-soldering-a-beginners-guide-to-jewelry-making-book/550799GP/?code=550799" target="_blank" class="item-link">
-                            Simple Soldering: A Beginner's Guide to Jewelry Making Book
-                        </a>
-                    </td>
-                    <td class="item-price">$24.95</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h2>Gift Cards, Subscriptions & Stocking Stuffers</h2>
-        
-        <h3>Gift Cards & Subscriptions</h3>
-        <table class="wishlist-table">
-            <thead>
-                <tr>
-                    <th style="width: 120px;">Image</th>
-                    <th>Item</th>
-                    <th style="width: 120px;">Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a href="https://bookshop.org/gift_cards" target="_blank">
-                            <img src="https://rails-assets-us.bookshop.org/assets/sweater-gift-card-2025-static-no-snow-no-shadow-5e5b2e15375e4a1b754a90d8b0d7c57798d92e7ba0f07cf699cfcfa1f41ec94f.png" alt="Bookshop.org Gift Card" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://bookshop.org/gift_cards" target="_blank" class="item-link">
-                            Bookshop.org Gift Card
-                        </a>
-                    </td>
-                    <td class="item-price">Various</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://mysa.wine/products/natural-wine-club-gift" target="_blank">
-                            <img src="https://mysa.wine/cdn/shop/files/mysa-gift-club.jpg?v=1737458043&width=1462" alt="Mysa Natural Wine Club Gift" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://mysa.wine/products/natural-wine-club-gift" target="_blank" class="item-link">
-                            Mysa Natural Wine Club Gift
-                        </a>
-                    </td>
-                    <td class="item-price">Various</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://www.riogrande.com/account/login/?ReturnUrl=/gift-credit/" target="_blank">
-                            <img src="https://www.riogrande.com/cdn-cgi/image/quality=100/globalassets/header/megamenu/2022-branded-tools-swanstrom-square-1_cropped.png" alt="Rio Grande Gift Credit" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.riogrande.com/account/login/?ReturnUrl=/gift-credit/" target="_blank" class="item-link">
-                            Rio Grande Gift Credit
-                        </a>
-                    </td>
-                    <td class="item-price">Various</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://thedarkroom.com/shop/product/gift-card/" target="_blank">
-                            <img src="https://thedarkroom.com/shop/wp-content/uploads/2016/10/The-Darkroom-Gift-Card-SITE-holiday-promo.png" alt="The Darkroom Gift Card" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://thedarkroom.com/shop/product/gift-card/" target="_blank" class="item-link">
-                            The Darkroom Gift Card
-                        </a>
-                    </td>
-                    <td class="item-price">Various</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h3>Stocking Stuffers</h3>
-        <table class="wishlist-table">
-            <thead>
-                <tr>
-                    <th style="width: 120px;">Image</th>
-                    <th>Item</th>
-                    <th style="width: 120px;">Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a href="https://www.apple.com/shop/product/mx763am/a/apple-pencil-tips-4-pack?fnode=0b1b0980cb5ebd2d8b376a2fcf3323433c6027ebb36814059ef367bb705dc8ae5f4acccce8ebf6f8359031265d71c09d6bbf9694856316dfb2babee67e2905423cb03696544d03c3406736ea0d353ab717c147c4f53281f1b05cd3839d62b04afe29880915d1e75021279b3a4c878dac" target="_blank">
-                            <img src="https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MLUN2?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=NjdlV29VQ3IvQXFTS3dxNnlwd0lod2tuVHYzMERCZURia3c5SzJFOTlPZ1dPb3VRYjlDZDVka0pWcDNhK0pIUDdhMmczaWZralZNQXhCS0NBUjVvbVE" alt="Apple Pencil Tips 4-Pack" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.apple.com/shop/product/mx763am/a/apple-pencil-tips-4-pack?fnode=0b1b0980cb5ebd2d8b376a2fcf3323433c6027ebb36814059ef367bb705dc8ae5f4acccce8ebf6f8359031265d71c09d6bbf9694856316dfb2babee67e2905423cb03696544d03c3406736ea0d353ab717c147c4f53281f1b05cd3839d62b04afe29880915d1e75021279b3a4c878dac" target="_blank" class="item-link">
-                            Apple Pencil Tips 4-Pack
-                        </a>
-                    </td>
-                    <td class="item-price">$19.00</td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="https://www.elago.com/products/pencil-grip-for-apple-pencil-2-3-options?variant=41700189012122" target="_blank">
-                            <img src="https://www.elago.com/cdn/shop/products/EAPEN2-GRIP-DGMT.jpg?v=1722978205&width=3000" alt="Elago Pencil Grip for Apple Pencil" class="item-image">
-                        </a>
-                    </td>
-                    <td class="item-name">
-                        <a href="https://www.elago.com/products/pencil-grip-for-apple-pencil-2-3-options?variant=41700189012122" target="_blank" class="item-link">
-                            Elago Pencil Grip for Apple Pencil
-                        </a>
-                    </td>
-                    <td class="item-price">$9.99</td>
+                    <td class="item-price">$180.00</td>
                 </tr>
             </tbody>
         </table>
 
-    </div>
+        
+        <h2>Gifts Over $50</h2>
+        
+        <h3>Electronics</h3>
+        <table class="wishlist-table">
+            <thead>
+                <tr>
+                    <th style="width: 120px;">Image</th>
+                    <th>Item</th>
+                    <th style="width: 120px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://getsnooz.com/products/snooz-white-noise-machine" target="_blank">
+                            <img src="https://cdn.shopify.com/s/files/1/1378/8621/files/SNOOZ_Original_White_Noise_Machine_Cloud_d455f258-2010-4a25-8931-b04a9fbbb7bb.jpg?v=1756831432&width=1800" alt="Snooz White Noise Machine" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://getsnooz.com/products/snooz-white-noise-machine" target="_blank" class="item-link">
+                            **Snooz White Noise Machine**
+                        </a>
+                    </td>
+                    <td class="item-price">$79.99</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://www.logitech.com/en-us/shop/p/c920s-pro-hd-webcam" target="_blank">
+                            <img src="https://resource.logitech.com/w_544,h_466,ar_7:6,c_pad,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/webcams/c920s/gallery/c920s-gallery-1.png" alt="Logitech C920S Webcam" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.logitech.com/en-us/shop/p/c920s-pro-hd-webcam" target="_blank" class="item-link">
+                            **Logitech C920S Pro HD Webcam**
+                        </a>
+                        <br><small>Home office item</small>
+                    </td>
+                    <td class="item-price">$69.99</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://www.elago.com/products/magnetic-stand-for-ipads?variant=42899754746010" target="_blank">
+                            <img src="https://www.elago.com/cdn/shop/products/EST-MAG-PAD-DGY.jpg?v=1692202550&width=3000" alt="Elago Magnetic Stand for iPad" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.elago.com/products/magnetic-stand-for-ipads?variant=42899754746010" target="_blank" class="item-link">
+                            **Elago Magnetic Stand for iPad**
+                        </a>
+                        <br><small>Color: Dark Gray | Home office item</small>
+                    </td>
+                    <td class="item-price">$59.99</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Clothing & Accessories</h3>
+        <table class="wishlist-table">
+            <thead>
+                <tr>
+                    <th style="width: 120px;">Image</th>
+                    <th>Item</th>
+                    <th style="width: 120px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://matethelabel.com/collections/all/products/fleece-oversized-sweatshirt-jet-black?variant=39849722216626" target="_blank">
+                            <img src="https://matethelabel.com/cdn/shop/files/20250127_LightWork_MateTheLabel_ApparelFlats_SetB_OrganicFleeceOversizedSweatshirt_JBLK_0114_04cfe20a-75e5-47d2-b7aa-07a3180bdf5c_900x.jpg?v=1745858520" alt="Mate Fleece Oversized Sweatshirt" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://matethelabel.com/collections/all/products/fleece-oversized-sweatshirt-jet-black?variant=39849722216626" target="_blank" class="item-link">
+                            **Mate Fleece Oversized Sweatshirt - Jet Black**
+                        </a>
+                        <br><small>Size: M/L | Color: Jet Black</small>
+                    </td>
+                    <td class="item-price">$88.00</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://matethelabel.com/collections/all/products/fleece-oversized-sweatshirt-heather-grey" target="_blank">
+                            <img src="https://matethelabel.com/cdn/shop/files/20250127_LightWork_MateTheLabel_ApparelFlats_SetB_OrganicFleeceOversizedSweatshirt_HGR_0098_1500x2000_1_optimized_900x.jpg?v=1754504189" alt="Mate Fleece Oversized Sweatshirt" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://matethelabel.com/collections/all/products/fleece-oversized-sweatshirt-heather-grey" target="_blank" class="item-link">
+                            **Mate Fleece Oversized Sweatshirt - Heather Gray**
+                        </a>
+                        <br><small>Size: M/L | Color: Heather Gray</small>
+                    </td>
+                    <td class="item-price">$88.00</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://matethelabel.com/products/organic-cotton-classic-tee-bone" target="_blank">
+                            <img src="https://matethelabel.com/cdn/shop/files/20250128_LightWork_MateTheLabel_ApparelFlats_SetB_OrganicCottonClassicTee_BON_0410_dc0fb29d-4da1-44bb-b35a-b6bf8b3b3e1e_900x.jpg?v=1743097086" alt="Mate Organic Cotton Classic Tee" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://matethelabel.com/products/organic-cotton-classic-tee-bone" target="_blank" class="item-link">
+                            **Mate Organic Cotton Classic Tee**
+                        </a>
+                        <br><small>Size: M | Colors: Bone, Heather Oat, Jet Black, Mushroom, Pebble, True White</small>
+                    </td>
+                    <td class="item-price">$52.00</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://matethelabel.com/collections/gifts-under-52/products/organic-cotton-long-sleeve-tee-bone?variant=44359422705842" target="_blank">
+                            <img src="https://matethelabel.com/cdn/shop/files/20250128_LightWork_MateTheLabel_ApparelFlats_SetB_OrganicCottonLSTee_PBL_0385_508add5b-17a3-4363-b212-449b6514f337_900x.jpg?v=1743102271" alt="Mate Organic Cotton Long Sleeve Tee" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://matethelabel.com/collections/gifts-under-52/products/organic-cotton-long-sleeve-tee-bone?variant=44359422705842" target="_blank" class="item-link">
+                            **Mate Organic Cotton Long Sleeve Tee**
+                        </a>
+                        <br><small>Size: M | Colors: Bone, Heather Oat, Jet Black, Pebble</small>
+                    </td>
+                    <td class="item-price">$62.00</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Photography</h3>
+        <table class="wishlist-table">
+            <thead>
+                <tr>
+                    <th style="width: 120px;">Image</th>
+                    <th>Item</th>
+                    <th style="width: 120px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://www.bhphotovideo.com/c/product/742308-USA/Kodak_6031678_35mm_Professional_Portra_400.html" target="_blank">
+                            <img src="https://www.bhphotovideo.com/images/fb/Kodak_6031678_35mm_Professional_Portra_400_742308.jpg" alt="Kodak Portra 400 Film" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.bhphotovideo.com/c/product/742308-USA/Kodak_6031678_35mm_Professional_Portra_400.html" target="_blank" class="item-link">
+                            **Kodak 35mm Professional Portra 400 Film (5-Pack)**
+                        </a>
+                    </td>
+                    <td class="item-price">$74.95</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Beauty & Personal Care</h3>
+        <table class="wishlist-table">
+            <thead>
+                <tr>
+                    <th style="width: 120px;">Image</th>
+                    <th>Item</th>
+                    <th style="width: 120px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://credobeauty.com/products/plumscreen-spf-31" target="_blank">
+                            <img src="https://credobeauty.com/cdn/shop/products/Plumscreen-1440x1440_1946x.png?v=1762201526" alt="Plumscreen SPF 31" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://credobeauty.com/products/plumscreen-spf-31" target="_blank" class="item-link">
+                            **Plumscreen SPF 31**
+                        </a>
+                    </td>
+                    <td class="item-price">$80.00</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>Gifts Under $50</h2>
+        
+        <h3>Clothing & Accessories</h3>
+        <table class="wishlist-table">
+            <thead>
+                <tr>
+                    <th style="width: 120px;">Image</th>
+                    <th>Item</th>
+                    <th style="width: 120px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://matethelabel.com/products/organic-cotton-sock-5-pack-bone-forest-maple-jet-black-birch" target="_blank">
+                            <img src="https://matethelabel.com/cdn/shop/files/organic_sock_5_pack_f790e479-7f45-4ee1-b6d9-1885b1ea1474_1080x.jpg?v=1761839052" alt="Mate Organic Cotton Sock 5-Pack" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://matethelabel.com/products/organic-cotton-sock-5-pack-bone-forest-maple-jet-black-birch" target="_blank" class="item-link">
+                            **Mate Organic Cotton Sock 5-Pack**
+                        </a>
+                        <br><small>Colors: Bone, Forest, Maple, Jet Black, Birch</small>
+                    </td>
+                    <td class="item-price">$48.00</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://matethelabel.com/collections/all/products/organic-stretch-racer-tank-bone-1?variant=42815731990706" target="_blank">
+                            <img src="https://matethelabel.com/cdn/shop/files/20250127_LightWork_MateTheLabel_ApparelFlats_SetA_OrganicStretchRacerTank_BON_0019_5991c0bb-ea76-4420-aa69-445d9c9295e1_900x.jpg?v=1754439097" alt="Mate Organic Stretch Racer Tank" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://matethelabel.com/collections/all/products/organic-stretch-racer-tank-bone-1?variant=42815731990706" target="_blank" class="item-link">
+                            **Mate Organic Stretch Racer Tank - Multi**
+                        </a>
+                        <br><small>Size: S | Colors: Bone, Jet Black, Mocha, Pebble</small>
+                    </td>
+                    <td class="item-price">$42.00</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://matethelabel.com/collections/all/products/organic-stretch-racer-tank-jet-black-1" target="_blank">
+                            <img src="https://matethelabel.com/cdn/shop/files/20250127_LightWork_MateTheLabel_ApparelFlats_SetA_OrganicStretchRacerTank_JBLK_0024_1500x2000_1_optimized_1_optimized_5d6d7846-3de4-4e84-b1f6-433285c316ca_900x.jpg?v=1754501679" alt="Mate Organic Stretch Racer Tank" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://matethelabel.com/collections/all/products/organic-stretch-racer-tank-jet-black-1" target="_blank" class="item-link">
+                            **Mate Organic Stretch Racer Tank - Jet Black**
+                        </a>
+                        <br><small>Size: S | Color: Jet Black</small>
+                    </td>
+                    <td class="item-price">$42.00</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Electronics</h3>
+        <table class="wishlist-table">
+            <thead>
+                <tr>
+                    <th style="width: 120px;">Image</th>
+                    <th>Item</th>
+                    <th style="width: 120px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://www.elago.com/products/smart-magnetic-desk-mat?variant=44610019491994" target="_blank">
+                            <img src="https://www.elago.com/cdn/shop/files/DESK-MAGMAT-ST_Amazon.jpg?v=1711750933&width=3000" alt="Elago Smart Magnetic Desk Mat" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.elago.com/products/smart-magnetic-desk-mat?variant=44610019491994" target="_blank" class="item-link">
+                            **Elago Smart Magnetic Desk Mat**
+                        </a>
+                        <br><small>Color: Stone | Home office item</small>
+                    </td>
+                    <td class="item-price">$34.99</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://www.elago.com/products/smart-magnetic-folio-board?variant=45154474229914" target="_blank">
+                            <img src="https://www.elago.com/cdn/shop/files/DESK-FLO-ST_Amazon.jpg?v=1722881751&width=3000" alt="Elago Smart Magnetic Folio Board" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.elago.com/products/smart-magnetic-folio-board?variant=45154474229914" target="_blank" class="item-link">
+                            **Elago Smart Magnetic Folio Board**
+                        </a>
+                        <br><small>Color: Stone | Home office item</small>
+                    </td>
+                    <td class="item-price">$34.99</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://www.elago.com/products/15w-wireless-charging-pad-magsafe?variant=45154455421082" target="_blank">
+                            <img src="https://www.elago.com/cdn/shop/files/EMSPAD15W-ST-KR2.jpg?v=1751264071&width=3000" alt="Elago 15W Wireless Charging Pad" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.elago.com/products/15w-wireless-charging-pad-magsafe?variant=45154455421082" target="_blank" class="item-link">
+                            **Elago 15W Wireless Charging Pad (MagSafe)**
+                        </a>
+                        <br><small>Color: Stone | Home office item</small>
+                    </td>
+                    <td class="item-price">$29.99</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://www.elago.com/products/h-stand-3-colors?variant=40132748968090" target="_blank">
+                            <img src="https://www.elago.com/cdn/shop/products/ST-H_Amazon_2.jpg?v=1713932903&width=3000" alt="Elago H Stand" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.elago.com/products/h-stand-3-colors?variant=40132748968090" target="_blank" class="item-link">
+                            **Elago H Stand**
+                        </a>
+                        <br><small>Color: Dark Gray | Home office item</small>
+                    </td>
+                    <td class="item-price">$24.99</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://www.anker.com/products/a88e2-anker-prime-usb-c-cable-3-ft-240w-upcycled-braided?variant=43931966537878" target="_blank">
+                            <img src="https://cdn.shopify.com/s/files/1/0493/9834/9974/files/A88E2012_Rich_image_no_copy_2000x2000px.png?v=1739783322" alt="Anker Prime USB-C Cable" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.anker.com/products/a88e2-anker-prime-usb-c-cable-3-ft-240w-upcycled-braided?variant=43931966537878" target="_blank" class="item-link">
+                            **Anker Prime USB-C Cable 3ft 240W**
+                        </a>
+                        <br><small>Home office item</small>
+                    </td>
+                    <td class="item-price">$19.99</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Home & Bedding</h3>
+        <table class="wishlist-table">
+            <thead>
+                <tr>
+                    <th style="width: 120px;">Image</th>
+                    <th>Item</th>
+                    <th style="width: 120px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://www.aeraforhome.com/collections/fragrances/products/poetry-mini" target="_blank">
+                            <img src="https://www.aeraforhome.com/cdn/shop/files/mini-fragrance-sf-poetry-shadow_2cffef09-c1c8-4ade-97c8-30cfde2cc942.png?v=1762439610&width=250" alt="Aera Poetry Mini Fragrance" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.aeraforhome.com/collections/fragrances/products/poetry-mini" target="_blank" class="item-link">
+                            **Aera Poetry Mini Fragrance**
+                        </a>
+                    </td>
+                    <td class="item-price">$30.00</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Beauty & Personal Care</h3>
+        <table class="wishlist-table">
+            <thead>
+                <tr>
+                    <th style="width: 120px;">Image</th>
+                    <th>Item</th>
+                    <th style="width: 120px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://us.typology.com/products/radiance-botanical-night-serum" target="_blank">
+                            <img src="https://media.typology.com/storyblok/1500x1500/031772627/radiance_night_serum.jpg" alt="Typology Radiance Botanical Night Serum" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://us.typology.com/products/radiance-botanical-night-serum" target="_blank" class="item-link">
+                            **Typology Radiance Botanical Night Serum**
+                        </a>
+                    </td>
+                    <td class="item-price">$39.00</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://us.typology.com/products/eyelashes-and-brows-serum" target="_blank">
+                            <img src="https://imgs.search.brave.com/kVF-yOf5E6Q1dbQysjvL35UfZEcaMuBkyZ0YBHbslpw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdG9y/YWdlLnNraW5zb3J0/LmNvbS8xNWNjb2kx/ZXZ1YzYzcjR2am45/cWtjcXpjaHBl" alt="Typology Lash & Brow Serum" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://us.typology.com/products/eyelashes-and-brows-serum" target="_blank" class="item-link">
+                            **Typology Eyelashes and Brows Serum**
+                        </a>
+                    </td>
+                    <td class="item-price">$37.00</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://us.typology.com/products/hydrating-moisturizer" target="_blank">
+                            <img src="https://media.typology.com/storyblok/1500x1500/03177262/hydrating_moisturizer_cream.jpg" alt="Typology Hydrating Moisturizer" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://us.typology.com/products/hydrating-moisturizer" target="_blank" class="item-link">
+                            **Typology Hydrating Moisturizer**
+                        </a>
+                    </td>
+                    <td class="item-price">$37.00</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://us.typology.com/products/tinted-lip-oil" target="_blank">
+                            <img src="https://imgs.search.brave.com/qQnDNudiMap0SjPO5c-qXGAUlxMIoJzRcOWfLHB0zZc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS50eXBvbG9neS5j/b20vc3RvcnlibG9r/LzE2MDB4MTYwMC83/MzcxYjc5OWRkL3Q0/MF80MDA1X3BhY2tz/aG90X3dlYl8xNjAw/eDE2MDAtdGVpbnRl/X3NlcnVtLmpzZz90/d2ljPXYxL3F1YWxp/dHk9NzA" alt="Typology Tinted Lip Oil" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://us.typology.com/products/tinted-lip-oil" target="_blank" class="item-link">
+                            **Typology Tinted Lip Oil**
+                        </a>
+                        <br><small>Shade: Glazed Chestnut</small>
+                    </td>
+                    <td class="item-price">$27.00</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Books & Learning</h3>
+        <table class="wishlist-table">
+            <thead>
+                <tr>
+                    <th style="width: 120px;">Image</th>
+                    <th>Item</th>
+                    <th style="width: 120px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://www.barnesandnoble.com/w/vogue-the-jewellery-carol-woolton/1122474956" target="_blank">
+                            <img src="https://prodimage.images-bn.com/pimages/9781840917994_p0_v2_s600x595.jpg" alt="Vogue: The Jewellery" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.barnesandnoble.com/w/vogue-the-jewellery-carol-woolton/1122474956" target="_blank" class="item-link">
+                            **Vogue: The Jewellery by Carol Woolton**
+                        </a>
+                    </td>
+                    <td class="item-price">$45.00</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://www.riogrande.com/product/simple-soldering-a-beginners-guide-to-jewelry-making-book/550799GP/?code=550799" target="_blank">
+                            <img src="https://www.riogrande.com/cdn-cgi/image/width=1088,height=1088/globalassets/products/550799/550799.jpg" alt="Simple Soldering Book" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.riogrande.com/product/simple-soldering-a-beginners-guide-to-jewelry-making-book/550799GP/?code=550799" target="_blank" class="item-link">
+                            **Simple Soldering: A Beginner's Guide to Jewelry Making Book**
+                        </a>
+                    </td>
+                    <td class="item-price">$24.95</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>Gift Cards, Subscriptions & Stocking Stuffers</h2>
+        
+        <h3>Gift Cards & Subscriptions</h3>
+        <table class="wishlist-table">
+            <thead>
+                <tr>
+                    <th style="width: 120px;">Image</th>
+                    <th>Item</th>
+                    <th style="width: 120px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://bookshop.org/gift_cards" target="_blank">
+                            <img src="https://rails-assets-us.bookshop.org/assets/sweater-gift-card-2025-static-no-snow-no-shadow-5e5b2e15375e4a1b754a90d8b0d7c57798d92e7ba0f07cf699cfcfa1f41ec94f.png" alt="Bookshop.org Gift Card" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://bookshop.org/gift_cards" target="_blank" class="item-link">
+                            **Bookshop.org Gift Card**
+                        </a>
+                        <br><small>Online bookstore supporting independent bookshops</small>
+                    </td>
+                    <td class="item-price">Various</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://mysa.wine/products/natural-wine-club-gift" target="_blank">
+                            <img src="https://mysa.wine/cdn/shop/files/mysa-gift-club.jpg?v=1737458043&width=1462" alt="Mysa Natural Wine Club Gift" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://mysa.wine/products/natural-wine-club-gift" target="_blank" class="item-link">
+                            **Mysa Natural Wine Club Gift**
+                        </a>
+                        <br><small>Natural wine subscription featuring small producers</small>
+                    </td>
+                    <td class="item-price">Various</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://www.riogrande.com/account/login/?ReturnUrl=/gift-credit/" target="_blank">
+                            <img src="https://www.riogrande.com/cdn-cgi/image/quality=100/globalassets/header/megamenu/2022-branded-tools-swanstrom-square-1_cropped.png" alt="Rio Grande Gift Credit" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.riogrande.com/account/login/?ReturnUrl=/gift-credit/" target="_blank" class="item-link">
+                            **Rio Grande Gift Credit**
+                        </a>
+                        <br><small>Jewelry-making tools, supplies, and findings</small>
+                    </td>
+                    <td class="item-price">Various</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://thedarkroom.com/shop/product/gift-card/" target="_blank">
+                            <img src="https://thedarkroom.com/shop/wp-content/uploads/2016/10/The-Darkroom-Gift-Card-SITE-holiday-promo.png" alt="The Darkroom Gift Card" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://thedarkroom.com/shop/product/gift-card/" target="_blank" class="item-link">
+                            **The Darkroom Gift Card**
+                        </a>
+                        <br><small>Film developing, printing, and scanning services</small>
+                    </td>
+                    <td class="item-price">Various</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Stocking Stuffers</h3>
+        <table class="wishlist-table">
+            <thead>
+                <tr>
+                    <th style="width: 120px;">Image</th>
+                    <th>Item</th>
+                    <th style="width: 120px;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="https://www.apple.com/shop/product/mx763am/a/apple-pencil-tips-4-pack?fnode=0b1b0980cb5ebd2d8b376a2fcf3323433c6027ebb36814059ef367bb705dc8ae5f4acccce8ebf6f8359031265d71c09d6bbf9694856316dfb2babee67e2905423cb03696544d03c3406736ea0d353ab717c147c4f53281f1b05cd3839d62b04afe29880915d1e75021279b3a4c878dac" target="_blank">
+                            <img src="https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MLUN2?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=NjdlV29VQ3IvQXFTS3dxNnlwd0lod2tuVHYzMERCZURia3c5SzJFOTlPZ1dPb3VRYjlDZDVka0pWcDNhK0pIUDdhMmczaWZralZNQXhCS0NBUjVvbVE" alt="Apple Pencil Tips 4-Pack" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.apple.com/shop/product/mx763am/a/apple-pencil-tips-4-pack?fnode=0b1b0980cb5ebd2d8b376a2fcf3323433c6027ebb36814059ef367bb705dc8ae5f4acccce8ebf6f8359031265d71c09d6bbf9694856316dfb2babee67e2905423cb03696544d03c3406736ea0d353ab717c147c4f53281f1b05cd3839d62b04afe29880915d1e75021279b3a4c878dac" target="_blank" class="item-link">
+                            **Apple Pencil Tips 4-Pack**
+                        </a>
+                    </td>
+                    <td class="item-price">$19.00</td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <a href="https://www.elago.com/products/pencil-grip-for-apple-pencil-2-3-options?variant=41700189012122" target="_blank">
+                            <img src="https://www.elago.com/cdn/shop/products/EAPEN2-GRIP-DGMT.jpg?v=1722978205&width=3000" alt="Elago Pencil Grip for Apple Pencil" class="item-image">
+                        </a>
+                    </td>
+                    <td class="item-name">
+                        <a href="https://www.elago.com/products/pencil-grip-for-apple-pencil-2-3-options?variant=41700189012122" target="_blank" class="item-link">
+                            **Elago Pencil Grip for Apple Pencil**
+                        </a>
+                    </td>
+                    <td class="item-price">$9.99</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
 </body>
 </html>
